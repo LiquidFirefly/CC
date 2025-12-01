@@ -301,7 +301,7 @@
 
 /datum/status_effect/buff/familiar/quiet_resilience
 	id = "quiet_resilience"
-	effectedstats = list(STATKEY_WIL = 1)
+	effectedstats = list(STATKEY_CON = 1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/quiet_resilience
 
 /atom/movable/screen/alert/status_effect/buff/familiar/quiet_resilience
@@ -430,7 +430,7 @@
 
 /datum/status_effect/buff/familiar/burdened_coil
 	id = "burdened_coil"
-	effectedstats = list(STATKEY_STR = 1, STATKEY_WIL = 1)
+	effectedstats = list(STATKEY_STR = 1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/burdened_coil
 
 /atom/movable/screen/alert/status_effect/buff/familiar/burdened_coil
@@ -468,7 +468,7 @@
 
 /datum/status_effect/buff/familiar/starseam
 	id = "starseam"
-	effectedstats = list(STATKEY_PER = 1, STATKEY_SPD = 1)
+	effectedstats = list(STATKEY_PER = 1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/starseam
 
 /atom/movable/screen/alert/status_effect/buff/familiar/starseam
@@ -501,7 +501,7 @@
 
 /datum/status_effect/buff/familiar/steady_spark
 	id = "steady_spark"
-	effectedstats = list(STATKEY_INT = 1, STATKEY_CON = 1)
+	effectedstats = list(STATKEY_INT = 1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/steady_spark
 
 /atom/movable/screen/alert/status_effect/buff/familiar/steady_spark
@@ -531,7 +531,7 @@
 
 /datum/status_effect/buff/familiar/subtle_slip
 	id = "subtle_slip"
-	effectedstats = list(STATKEY_SPD = 1, STATKEY_LCK = 1) // Idk why it gave +1 speed twice instead of +2, but +2 speed's too much. Luck is more thematic.
+	effectedstats = list(STATKEY_LCK = 1) //Lucky bnnuy...
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/subtle_slip
 
 /atom/movable/screen/alert/status_effect/buff/familiar/subtle_slip
@@ -563,7 +563,7 @@
 
 /datum/status_effect/buff/familiar/noticed_thought
 	id = "noticed_thought"
-	effectedstats = list(STATKEY_PER = 1, STATKEY_INT = 1)
+	effectedstats = list(STATKEY_INT = 1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/noticed_thought
 
 /atom/movable/screen/alert/status_effect/buff/familiar/noticed_thought
@@ -594,7 +594,7 @@
 
 /datum/status_effect/buff/familiar/worn_stone
 	id = "worn_stone"
-	effectedstats = list(STATKEY_STR = 1, STATKEY_CON = 1)
+	effectedstats = list(STATKEY_WIL = 1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/worn_stone
 
 /atom/movable/screen/alert/status_effect/buff/familiar/worn_stone
