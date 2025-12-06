@@ -247,7 +247,6 @@
 /datum/status_effect/regen/soothing_origin/tick()
 	. = ..()
 	for(var/mob/living/living_mob in range(range, owner))
-		var/distance = get_dist(src, living_mob)
 		if(!living_mob.has_status_effect(/datum/status_effect/regen/soothing_bloom))
 			to_chat(living_mob, "A cool mist settles on your skin, and you feel your wounds slowly close.")
 			living_mob.apply_status_effect(/datum/status_effect/regen/soothing_bloom)
