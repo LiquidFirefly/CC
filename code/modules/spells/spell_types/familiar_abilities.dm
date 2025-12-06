@@ -238,15 +238,15 @@
 	alert_type = /atom/movable/screen/alert/status_effect/regen/soothing_origin
 	duration = -1 //Toggle ability
 	var/healing_range = 2 
+	var/range = 4
 
 /atom/movable/screen/alert/status_effect/regen/soothing_origin
 	name = "Soothing Origin"
 	desc = "You are gently releasing healing vapors to others around you."
-	var/range = 4
 
 /datum/status_effect/regen/soothing_origin/tick()
 	. = ..()
-	for(var/mob/living/living_mob in range(range, user))
+	for(var/mob/living/living_mob in range(range, owner))
 		var/distance = get_dist(src, living_mob)
 		if(!living_mob.has_status_effect(/datum/status_effect/regen/soothing_bloom))
 			to_chat(living_mob, "A cool mist settles on your skin, and you feel your wounds slowly close.")
