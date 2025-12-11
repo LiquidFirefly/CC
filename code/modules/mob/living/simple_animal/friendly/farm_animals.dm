@@ -359,10 +359,10 @@
 
 /obj/item/udder/proc/beingmilked()
 	in_use = TRUE
-	//CC Edit
+	//Caustic Edit
 	spawn(20)
 		in_use = FALSE
-	//CC Edit End
+	//Caustic Edit End
 
 //grenchensnacker
 
