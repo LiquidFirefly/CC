@@ -2,7 +2,7 @@
 
 | Website                   | Link                                           |
 |---------------------------|------------------------------------------------|
-| Discord | [https://discord.gg/eFeG9dYZuv](https://discord.gg/eFeG9dYZuv)
+| Discord | [https://discord.gg/ApEsEhBAMm](https://discord.gg/ApEsEhBAMm)
 | Code    | [https://github.com/CausticCove/CC](https://github.com/CausticCove/CC)    |
 | Wiki    | [https://azurepeak.miraheze.org/wiki/Main_Page](https://azurepeak.miraheze.org/wiki/Main_Page) |
 
