@@ -591,7 +591,6 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker
 	name = "volfskulle bascinet"
 	desc = "A steel bascinet helmet with a snarling visor that protects the entire head and face. Just like the nitebeasts it mimics, so too does the helmet's teeth glisten with flesh-sundering sharpness."
-	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL //CC edit: Pseudoantagonist-exclusive. Gives them a (small) edge over traditional pugilists and barbarians.
 	var/active_item = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker/equipped(mob/living/user, slot)
