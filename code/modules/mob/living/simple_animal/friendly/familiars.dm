@@ -218,11 +218,6 @@
     speak_emote = list("croaks low", "grumbles")
     emote_hear = list("croaks lowly.", "lets out a bubbling sound.")
     emote_see = list("shudders like stone.", "thumps softly in place.")
-    var/icon/original_icon = null
-    var/original_icon_state = ""
-    var/original_icon_living = ""
-    var/original_name = ""
-    var/stoneform = FALSE
 
 /datum/status_effect/buff/familiar/settled_weight
 	id = "settled_weight"

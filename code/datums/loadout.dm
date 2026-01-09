@@ -151,10 +151,6 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Short Jupon"
 	path = /obj/item/clothing/cloak/tabard/stabard/surcoat/short
 
-/datum/loadout_item/jupon_short
-	name = "Short Jupon"
-	path = /obj/item/clothing/cloak/stabard/surcoat/short
-
 /datum/loadout_item/cape
 	name = "Cape"
 	path = /obj/item/clothing/cloak/cape

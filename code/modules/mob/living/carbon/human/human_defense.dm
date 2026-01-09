@@ -20,6 +20,7 @@
 	if(isbodypart(def_zone))
 		var/obj/item/bodypart/CBP = def_zone
 		def_zone = CBP.body_zone
+	var/obj/item/clothing/used
 	var/protection = 0
 	var/intdamage = damage
 	if(d_type != "blunt")

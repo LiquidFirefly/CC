@@ -7,8 +7,6 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
-#include "_statpacks.dm"
-#include "_virtue.dm"
 #include "_maps\_basemap.dm"
 #include "_maps\map_files\cove_world\cove_CentCom.dmm"
 #include "_maps\templates\arcyne_fortress.dm"
@@ -3034,6 +3032,8 @@
 #include "modular_causticcove\code\modules\vices\bottomless\bottomless.dm"
 #include "modular_causticcove\code\modules\vices\bottomless\maxfood.dm"
 #include "modular_causticcove\code\modules\vices\bottomless\stressevent_gluton.dm"
+#include "_statpacks.dm"
+#include "_virtue.dm"
 #include "statpacks\agile.dm"
 #include "statpacks\mental.dm"
 #include "statpacks\physical.dm"
