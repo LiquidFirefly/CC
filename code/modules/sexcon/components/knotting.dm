@@ -145,12 +145,16 @@
 
 /datum/component/knotting/proc/handle_knot_force_effects(mob/living/carbon/human/user, mob/living/carbon/human/target, force_level)
 	if(force_level > SEX_FORCE_MID)
+		/* // Caustic Cove edit! Remove pain and damage from Knots entirely for now. Re-add later when a proper prefs system is in.
 		var/datum/component/arousal/target_arousal = target.GetComponent(/datum/component/arousal)
 		if(force_level == SEX_FORCE_EXTREME)
 			target.apply_damage(30, BRUTE, BODY_ZONE_CHEST)
 			target_arousal?.try_do_pain_effect(PAIN_HIGH_EFFECT, FALSE)
 		else
 			target_arousal?.try_do_pain_effect(PAIN_MILD_EFFECT, FALSE)
+		*/
+		// Caustic Cove edit end - Stun is fine though to keep in, it's kinda funny lol.
+		
 		target.Stun(80)
 
 /datum/component/knotting/proc/apply_knot_status_effects(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -307,7 +311,9 @@
 		var/stun_chance = !top.cmode && !tugging_knot_blocked ? 7 : 20
 		if(prob(stun_chance))
 			var/datum/component/arousal/top_arousal = top.GetComponent(/datum/component/arousal)
+			/* Caustic Cove edit - Removing pain from knotting for now. See top edit for more!
 			top_arousal?.try_do_pain_effect(PAIN_MILD_EFFECT, FALSE)
+			*/ // Caustic Cove Edit End
 
 			if(tugging_knot_blocked && (top.mobility_flags & MOBILITY_STAND))
 				top.Knockdown(10)
@@ -320,7 +326,9 @@
 		if(prob(5))
 			btm.emote("groan")
 			var/datum/component/arousal/btm_arousal = btm.GetComponent(/datum/component/arousal)
+			/* Caustic Cove edit - Removing pain from knotting for now. See top edit for more!
 			btm_arousal?.try_do_pain_effect(PAIN_MED_EFFECT, FALSE)
+			*/ // Caustic Cove Edit End
 			btm.Stun(15)
 		else if(prob(3))
 			btm.emote("painmoan")
@@ -361,7 +369,9 @@
 			btm.emote("groan")
 			//! TODO: replace this with a sginal I'mtired boss
 			var/datum/component/arousal/btm_arousal = btm.GetComponent(/datum/component/arousal)
+			/* Caustic Cove edit - Removing pain from knotting for now. See top edit for more!
 			btm_arousal?.try_do_pain_effect(PAIN_MED_EFFECT, FALSE)
+			*/ // Caustic Cove Edit End
 			btm.Stun(15)
 		else if(prob(4))
 			btm.emote("painmoan")
@@ -396,7 +406,9 @@
 			if(notify && !keep_btm_status && !btm.has_status_effect(/datum/status_effect/knot_gaped))
 				btm.apply_status_effect(/datum/status_effect/knot_gaped)
 
+		/* Caustic Cove edit - Removing pain from knotting for now. See top edit for more!
 		btm.apply_damage(damage, BRUTE, BODY_ZONE_CHEST)
+		*/ // Caustic Cove Edit End
 		btm.Stun(80)
 		playsound(btm, 'sound/misc/mat/pop.ogg', 100, TRUE, -2, ignore_walls = FALSE)
 		playsound(top, 'sound/misc/mat/segso.ogg', 50, TRUE, -2, ignore_walls = FALSE)
@@ -406,14 +418,18 @@
 			top.visible_message(span_notice("[top] yanks their knot out of [btm]!"),
 				span_notice("I yank my knot out from [btm]."))
 			var/datum/component/arousal/btm_arousal = btm.GetComponent(/datum/component/arousal)
+			/* Caustic Cove edit - Removing pain from knotting for now. See top edit for more!
 			btm_arousal?.try_do_pain_effect(PAIN_HIGH_EFFECT, FALSE)
+			*/ // Caustic Cove Edit End
 	else if(notify)
 		playsound(btm, 'sound/misc/mat/insert (1).ogg', 50, TRUE, -2, ignore_walls = FALSE)
 		top.visible_message(span_notice("[top] slips their knot out of [btm]!"),
 			span_notice("I slip my knot out from [btm]."))
 		btm.emote("painmoan", forced = TRUE)
 		var/datum/component/arousal/btm_arousal = btm.GetComponent(/datum/component/arousal)
+		/* Caustic Cove edit - Removing pain from knotting for now. See top edit for more!
 		btm_arousal?.try_do_pain_effect(PAIN_MILD_EFFECT, FALSE)
+		*/ // Caustic Cove Edit End
 
 	// Add aftermath effects
 	var/turf/turf = get_turf(btm)
