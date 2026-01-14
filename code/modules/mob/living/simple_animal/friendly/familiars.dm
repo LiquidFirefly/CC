@@ -54,7 +54,7 @@
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	var/obj/item/mouth = null
 	
-	var/buff_given = list()
+	var/buff_given = null
 	var/mob/living/carbon/familiar_summoner = null
 	var/inherent_spell = null
 	var/summoning_emote = null
@@ -187,6 +187,8 @@
 	emote("deathgasp")
 	if(familiar_summoner)
 		to_chat(familiar_summoner, span_warning("[src.name] has fallen, and your bond dims. Yet in the quiet beyond, a flicker of their essence remains."))
+		if(buff_given)
+			familiar_summoner.remove_status_effect(buff_given) //dead familiars should not continue to provide buffs
 
 /mob/living/simple_animal/pet/familiar/Destroy()
     if(familiar_summoner)
@@ -205,6 +207,7 @@
     icon_living = "pondstone"
     icon_dead = "pondstone_dead"
     buff_given = /datum/status_effect/buff/familiar/settled_weight
+    inherent_spell = list(/obj/effect/proc_holder/spell/self/stillness_of_stone)
     STASTR = 11
     STAPER = 7
     STAINT = 9
@@ -218,7 +221,7 @@
 
 /datum/status_effect/buff/familiar/settled_weight
 	id = "settled_weight"
-	effectedstats = list(STATKEY_STR = 1)
+	effectedstats = list(STATKEY_STR = 1, STATKEY_INT = -1, STATKEY_PER = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/settled_weight
 
 /atom/movable/screen/alert/status_effect/buff/familiar/settled_weight
@@ -236,6 +239,7 @@
     icon_dead = "mist_dead"
     alpha = 150
     buff_given = /datum/status_effect/buff/familiar/silver_glance
+    inherent_spell = list(/obj/effect/proc_holder/spell/self/lurking_step, /obj/effect/proc_holder/spell/invoked/veilbound_shift)
     pass_flags = PASSGRILLE | PASSMOB
     STASTR = 6
     STAPER = 11
@@ -251,7 +255,7 @@
 
 /datum/status_effect/buff/familiar/silver_glance
 	id = "silver_glance"
-	effectedstats = list(STATKEY_PER = 1)
+	effectedstats = list(STATKEY_PER = 1, STATKEY_WIL = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/silver_glance
 
 /atom/movable/screen/alert/status_effect/buff/familiar/silver_glance
@@ -267,6 +271,7 @@
     icon_living = "runerat"
     icon_dead = "runerat_dead"
     buff_given = /datum/status_effect/buff/familiar/threaded_thoughts
+    inherent_spell = list(/obj/effect/proc_holder/spell/self/inscription_cache, /obj/effect/proc_holder/spell/self/recall_cache)
     STASTR = 5
     STAPER = 9
     STAINT = 11
@@ -280,7 +285,7 @@
 
 /datum/status_effect/buff/familiar/threaded_thoughts
 	id = "threaded_thoughts"
-	effectedstats = list(STATKEY_INT = 1)
+	effectedstats = list(STATKEY_INT = 1, STATKEY_CON = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/threaded_thoughts
 
 /atom/movable/screen/alert/status_effect/buff/familiar/threaded_thoughts
@@ -297,6 +302,7 @@
     icon_dead = "vaporroot_dead"
     alpha = 150
     buff_given = /datum/status_effect/buff/familiar/quiet_resilience
+    inherent_spell = list(/obj/effect/proc_holder/spell/self/soothing_bloom)
     pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
     movement_type = FLYING
     STASTR = 4
@@ -310,7 +316,7 @@
 
 /datum/status_effect/buff/familiar/quiet_resilience
 	id = "quiet_resilience"
-	effectedstats = list(STATKEY_CON = 1)
+	effectedstats = list(STATKEY_CON = 1, STATKEY_INT = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/quiet_resilience
 
 /atom/movable/screen/alert/status_effect/buff/familiar/quiet_resilience
@@ -323,6 +329,7 @@
 	summoning_emote = "Dust rises and circles before coiling into a gray-scaled creature that radiates dry, residual warmth."
 	animal_species = "Ashcoiler"
 	buff_given = /datum/status_effect/buff/familiar/desert_bred_tenacity
+	inherent_spell = list(/obj/effect/proc_holder/spell/self/smolder_shroud)
 	butcher_results = list(/obj/item/ash = 1)
 	STASTR = 7
 	STAPER = 8
@@ -343,7 +350,7 @@
 
 /datum/status_effect/buff/familiar/desert_bred_tenacity
 	id = "desert_bred_tenacity"
-	effectedstats = list(STATKEY_WIL = 1)
+	effectedstats = list(STATKEY_WIL = 1, STATKEY_PER = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/desert_bred_tenacity
 
 /atom/movable/screen/alert/status_effect/buff/familiar/desert_bred_tenacity
@@ -356,6 +363,7 @@
 	summoning_emote = "The air glints, and a translucent hare twitches into existence."
 	animal_species = "Glimmer Hare"
 	buff_given = /datum/status_effect/buff/familiar/lightstep
+	inherent_spell = list(/obj/effect/proc_holder/spell/invoked/blink/glimmer_hare)
 	STASTR = 4
 	STAPER = 9
 	STACON = 6
@@ -375,7 +383,7 @@
 
 /datum/status_effect/buff/familiar/lightstep
 	id = "lightstep"
-	effectedstats = list(STATKEY_SPD = 1)
+	effectedstats = list(STATKEY_SPD = 1, STATKEY_WIL = -1, STATKEY_INT = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/lightstep
 
 /atom/movable/screen/alert/status_effect/buff/familiar/lightstep
@@ -388,6 +396,7 @@
 	summoning_emote = "A musical chime sounds. A tiny deer with antlers like bone flutes steps gently into view."
 	animal_species = "Hollow Antlerling"
 	buff_given = /datum/status_effect/buff/familiar/soft_favor
+	inherent_spell = list(/obj/effect/proc_holder/spell/self/verdant_veil)
 
 	STASTR = 6
 	STACON = 8
@@ -406,7 +415,7 @@
 
 /datum/status_effect/buff/familiar/soft_favor
 	id = "soft_favor"
-	effectedstats = list(STATKEY_SPD = 1)
+	effectedstats = list(STATKEY_PER = 1, STATKEY_INT = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/soft_favor
 
 /atom/movable/screen/alert/status_effect/buff/familiar/soft_favor
@@ -420,6 +429,7 @@
 	animal_species = "Gravemoss Serpent"
 	butcher_results = list(/obj/item/natural/dirtclod = 1)
 	buff_given = /datum/status_effect/buff/familiar/burdened_coil
+	inherent_spell = list(/obj/effect/proc_holder/spell/self/scent_of_the_grave)
 
 	STASTR = 11
 	STAPER = 8
@@ -439,7 +449,7 @@
 
 /datum/status_effect/buff/familiar/burdened_coil
 	id = "burdened_coil"
-	effectedstats = list(STATKEY_STR = 1)
+	effectedstats = list(STATKEY_LCK = -1, STATKEY_WIL = 1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/burdened_coil
 
 /atom/movable/screen/alert/status_effect/buff/familiar/burdened_coil
@@ -454,6 +464,7 @@
 	buff_given = /datum/status_effect/buff/familiar/starseam
 	pass_flags = PASSTABLE | PASSMOB
 	movement_type = FLYING
+	inherent_spell = list(/obj/effect/proc_holder/spell/self/starseers_cry)
 	STASTR = 4
 	STAPER = 11
 	STACON = 6
@@ -464,6 +475,7 @@
 	icon_living = "crow_flying"
 	icon_dead = "crow_dead"
 
+	base_intents = list(/datum/intent/unarmed/help)
 	harm_intent_damage = 0
 	melee_damage_lower = 0
 	melee_damage_upper = 0
@@ -476,7 +488,7 @@
 
 /datum/status_effect/buff/familiar/starseam
 	id = "starseam"
-	effectedstats = list(STATKEY_PER = 1)
+	effectedstats = list(STATKEY_PER = 1, STATKEY_CON = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/starseam
 
 /atom/movable/screen/alert/status_effect/buff/familiar/starseam
@@ -489,6 +501,7 @@
 	summoning_emote = "A hush falls as glowing ash collects into a fluttering emberdrake."
 	animal_species = "Emberdrake"
 	buff_given = /datum/status_effect/buff/familiar/steady_spark
+	inherent_spell = list(/obj/effect/proc_holder/spell/invoked/pyroclastic_puff)
 	butcher_results = list(/obj/item/ash = 1)
 	STASTR = 9
 	STAPER = 8
@@ -509,7 +522,7 @@
 
 /datum/status_effect/buff/familiar/steady_spark
 	id = "steady_spark"
-	effectedstats = list(STATKEY_INT = 1)
+	effectedstats = list(STATKEY_STR = 1, STATKEY_PER = -1, STATKEY_CON = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/steady_spark
 
 /atom/movable/screen/alert/status_effect/buff/familiar/steady_spark
@@ -518,10 +531,11 @@
 
 /mob/living/simple_animal/pet/familiar/ripplefox
 	name = "Ripplefox"
-	desc = "They flickers when not directly observed. Leaves no tracks. You're not always sure they're still nearby."
+	desc = "They flicker when not directly observed. Leaves no tracks. You're not always sure they're still nearby."
 	summoning_emote = "A ripple in the air becomes a sleek fox, their fur twitching between shades of color as they pads forth."
 	animal_species = "Ripplefox"
 	buff_given = /datum/status_effect/buff/familiar/subtle_slip
+	inherent_spell = list(/obj/effect/proc_holder/spell/self/phantom_flicker)
 	STASTR = 5
 	STACON = 8
 	STAWIL = 9
@@ -539,7 +553,7 @@
 
 /datum/status_effect/buff/familiar/subtle_slip
 	id = "subtle_slip"
-	effectedstats = list(STATKEY_LCK = 1) //Lucky bnnuy...
+	effectedstats = list(STATKEY_LCK = 1, STATKEY_WIL = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/subtle_slip
 
 /atom/movable/screen/alert/status_effect/buff/familiar/subtle_slip
@@ -552,6 +566,7 @@
 	summoning_emote = "A thought twists into form, a tiny stoat slinks into view."
 	animal_species = "Whisper Stoat"
 	buff_given = /datum/status_effect/buff/familiar/noticed_thought
+	inherent_spell = list(/obj/effect/proc_holder/spell/self/phantasm_fade)
 	STASTR = 5
 	STAPER = 11
 	STAINT = 11
@@ -571,7 +586,7 @@
 
 /datum/status_effect/buff/familiar/noticed_thought
 	id = "noticed_thought"
-	effectedstats = list(STATKEY_INT = 1)
+	effectedstats = list(STATKEY_PER = 1, STATKEY_INT = 1, STATKEY_STR = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/noticed_thought
 
 /atom/movable/screen/alert/status_effect/buff/familiar/noticed_thought
@@ -584,6 +599,7 @@
 	summoning_emote = "The ground gives a slow rumble. A turtle with a bark-like shell emerges from the soil."
 	animal_species = "Thornback Turtle"
 	buff_given = /datum/status_effect/buff/familiar/worn_stone
+	inherent_spell = list(/obj/effect/proc_holder/spell/self/verdant_sprout)
 	STASPD = 5
 	STAPER = 7
 	STAINT = 9
@@ -602,7 +618,7 @@
 
 /datum/status_effect/buff/familiar/worn_stone
 	id = "worn_stone"
-	effectedstats = list(STATKEY_WIL = 1)
+	effectedstats = list(STATKEY_WIL = 1, STATKEY_CON = 1, STATKEY_SPD = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/familiar/worn_stone
 
 /atom/movable/screen/alert/status_effect/buff/familiar/worn_stone

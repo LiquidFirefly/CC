@@ -17,7 +17,7 @@
 
 	xp_gain = TRUE
 	spell_tier = 1
-	cost = 3
+	cost = 0
 
 	invocations = list("Appare, spiritus fidus.")
 	invocation_type = "whisper"
@@ -58,6 +58,8 @@
 						return FALSE
 					else
 						revive_familiar(magic_stone, fam, user)
+						if (fam.buff_given)
+							user.apply_status_effect(fam.buff_given)
 						user.busy_summoning_familiar = FALSE
 						return TRUE
 				else if(choice == "Free them")
@@ -191,6 +193,8 @@
 		fam.faction |= faction_to_add
 		log_game("[key_name(user)] summoned non-sentient familiar of type [familiar_type]")
 		user.busy_summoning_familiar = FALSE
+		if (fam.buff_given)
+			user.apply_status_effect(fam.buff_given)
 		return TRUE
 	else
 		user.busy_summoning_familiar = FALSE
@@ -309,7 +313,9 @@
 		qdel(awakener)
 		return
 
-	chosen_one.mind.transfer_to(awakener, 1)
+	if (chosen_one.ckey)
+		awakener.ckey = chosen_one.ckey
+
 	var/datum/mind/mind_datum = awakener.mind
 	if (!mind_datum)
 		to_chat(user, span_warning("Familiar summoning failed: Mind transfer failed."))
@@ -324,12 +330,12 @@
 //Used to add inherent spells, now they choose their own.
 	awakener.choose_spells()
 	// Add familiar's inherent spells
-/* 	if (awakener.inherent_spell)
+	if (awakener.inherent_spell)
 		for (var/spell_path in awakener.inherent_spell)
 			if (ispath(spell_path))
 				var/obj/effect/proc_holder/spell/spell_instance = new spell_path
 				if (spell_instance)
-					mind_datum.AddSpell(spell_instance) */
+					mind_datum.AddSpell(spell_instance)
 
 	// Disable automated/AI features
 	awakener.can_have_ai = FALSE
@@ -377,4 +383,5 @@
     fam.revive(full_heal = TRUE, admin_revive = TRUE)
     fam.familiar_summoner = user
     fam.visible_message(span_notice("[fam.name] is restored to life by [user]'s magic!"))
+
     return TRUE

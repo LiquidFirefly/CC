@@ -165,6 +165,7 @@
 	// CC Edit End
 
 
+	playsound(W.loc, 'sound/body/shapeshift-end.ogg', 100, FALSE, 3)
 	//Compares the list of spells we had before transformation with those we do now. If there are any that don't match, we remove them
 	for(var/obj/effect/proc_holder/spell/self/originspell in WA.stored_spells)
 		for(var/obj/effect/proc_holder/spell/self/wildspell in W.mind.spell_list)

@@ -1,5 +1,6 @@
 /obj/effect/decal/remains
 	name = "remains"
+	desc = "Look on my works, ye mighty, and despair!"
 	gender = PLURAL
 	icon = 'icons/effects/blood.dmi'
 	var/harvestable_bones = list(/obj/item/natural/bone = 3) //caustic edit
@@ -11,7 +12,7 @@
 	qdel(src)
 
 /obj/effect/decal/remains/human
-	desc = ""
+	desc = "Thoughts once coursed through this vacant vessel. You will never know them."
 	icon_state = "remains"
 //caustic edit begin
 	harvestable_bones = list(/obj/item/natural/bone = 3, /obj/item/skull = 1)

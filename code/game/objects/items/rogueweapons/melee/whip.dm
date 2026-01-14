@@ -19,6 +19,7 @@
 	minstr = 6
 	grid_width = 32
 	grid_height = 64
+	special = /datum/special_intent/whip_coil
 	sellprice = 22 //Dastardly!
 
 /obj/item/rogueweapon/whip/getonmobprop(tag)
