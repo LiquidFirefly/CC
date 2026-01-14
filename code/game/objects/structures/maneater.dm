@@ -75,12 +75,12 @@
 				playsound(src,'sound/misc/maneaterspit.ogg', 100)
 				var/turf/target = get_ranged_target_turf(src, pick(GLOB.alldirs), 1)
 				AM.throw_at(target,3,2)
-			return TRUE//cc edit end
+				return TRUE//cc edit end
 			last_eat = world.time
 			playsound(src,'sound/misc/eat.ogg', rand(30,60), TRUE)
 			AM.forceMove(src)
-			seednutrition += 10
-		return
+			seednutrition += 20
+			return
 
 	var/mob/living/victim = AM
 	if(victim == planter)
