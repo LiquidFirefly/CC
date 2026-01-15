@@ -12,7 +12,9 @@
     name = "pistol bandolier"
     reqs = list(
         /obj/item/natural/hide/cured = 6,
-        /obj/item/rope = 2,)
+        /obj/item/rope = 1,
+        /obj/item/natural/cloth = 1,
+        /obj/item/natural/fibers = 1,)
     result = /obj/item/clothing/suit/roguetown/armor/guncloak
     craftdiff = 1  
     tools = list(/obj/item/needle)
